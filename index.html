@@ -1,174 +1,476 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>NEONFRONT – Siedler Kampflabor</title>
-<meta name="description" content="NEONFRONT: inoffizieller Kampfsimulator für Die Siedler Online – Abenteuer simulieren, Generäle skillen, beste Armee finden.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='1' stop-color='%23ff2bd6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='12' fill='%2307040f'/%3E%3Cpath d='M32 8l20 7v15c0 13-9 22-20 26C21 52 12 43 12 30V15z' fill='none' stroke='url(%23g)' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M23 41V23l18 18V23' fill='none' stroke='url(%23g)' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@500;600&display=swap">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>NEONFRONT – Siedler Kampflabor</title>
+        <meta
+            name="description"
+            content="NEONFRONT: inoffizieller Kampfsimulator für Die Siedler Online – Abenteuer simulieren, Generäle skillen, beste Armee finden."
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='1' stop-color='%23ff2bd6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='12' fill='%2307040f'/%3E%3Cpath d='M32 8l20 7v15c0 13-9 22-20 26C21 52 12 43 12 30V15z' fill='none' stroke='url(%23g)' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M23 41V23l18 18V23' fill='none' stroke='url(%23g)' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@500;600&display=swap"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <header class="top">
+            <a class="brand" href="#" aria-label="NEONFRONT">
+                <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#00f0ff" />
+                            <stop offset="1" stop-color="#ff2bd6" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d="M32 6l22 8v16c0 14-9 24-22 28C19 54 10 44 10 30V14z"
+                        fill="#07040f"
+                        stroke="url(#lg1)"
+                        stroke-width="4"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M22 42V22l20 20V22"
+                        fill="none"
+                        stroke="url(#lg1)"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+                <span class="bt"
+                    ><h1>NEON<span>FRONT</span></h1>
+                    <span class="sub"
+                        >Siedler Kampflabor // Cyber Battle Lab</span
+                    ></span
+                >
+            </a>
+            <nav class="topnav" aria-label="Hinweise">
+                <span class="pill">Fan-Projekt</span>
+                <button type="button" class="link" data-legal="haft">
+                    Haftungsausschluss
+                </button>
+            </nav>
+        </header>
 
-<header class="top">
-  <a class="brand" href="#" aria-label="NEONFRONT">
-    <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00f0ff"/><stop offset="1" stop-color="#ff2bd6"/></linearGradient></defs><path d="M32 6l22 8v16c0 14-9 24-22 28C19 54 10 44 10 30V14z" fill="#07040f" stroke="url(#lg1)" stroke-width="4" stroke-linejoin="round"/><path d="M22 42V22l20 20V22" fill="none" stroke="url(#lg1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span class="bt"><h1>NEON<span>FRONT</span></h1><span class="sub">Siedler Kampflabor // Cyber Battle Lab</span></span>
-  </a>
-  <nav class="topnav" aria-label="Hinweise">
-    <span class="pill">Fan-Projekt</span>
-    <button type="button" class="link" data-legal="haft">Haftungsausschluss</button>
-  </nav>
-</header>
+        <main>
+            <div class="cfg">
+                <section class="card" id="sec-general">
+                    <h2>01 // General</h2>
+                    <div class="grow">
+                        <select id="gen" aria-label="General wählen"></select>
+                        <button
+                            type="button"
+                            class="gear"
+                            id="skbtn"
+                            title="Skills &amp; Werte des Generals öffnen"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                width="18"
+                                height="18"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"
+                                />
+                            </svg>
+                            <span id="skn">0/21</span>
+                        </button>
+                    </div>
+                    <div class="gsum" id="gsum"></div>
+                    <details id="mgd">
+                        <summary id="mgs">
+                            Mehrere Generäle vergleichen (0 gewählt)
+                        </summary>
+                        <div class="flags">
+                            <button type="button" class="mini" id="mga">
+                                Alle</button
+                            ><button type="button" class="mini" id="mgn">
+                                Keine
+                            </button>
+                        </div>
+                        <div id="mgl" class="mgl"></div>
+                        <p class="note">
+                            Ist hier mindestens ein General angehakt, sucht die
+                            Simulation pro Lager den General mit den geringsten
+                            Verlusten. Jeder General zählt mit seiner eigenen
+                            gespeicherten Skillung.
+                        </p>
+                    </details>
+                </section>
 
-<main>
-  <div class="cfg">
+                <section class="card" id="sec-units">
+                    <h2>02 // Einheiten</h2>
+                    <div class="cap"><i id="capbar" style="width: 0"></i></div>
+                    <p class="note capnote" id="captxt"></p>
+                    <div class="utools">
+                        <label class="flag1"
+                            ><input type="checkbox" id="full" /> Nur mit
+                            maximaler Einheitenanzahl angreifen</label
+                        >
+                        <span class="ubar"
+                            ><button
+                                type="button"
+                                class="mini"
+                                id="tank"
+                                title="Nur Schwertkämpfer, Berittene Schwertkämpfer und Ritter dürfen Verluste haben"
+                            >
+                                Nur SK/BSK/Ritter fallen</button
+                            ><button type="button" class="mini" id="uclear">
+                                Alle leeren
+                            </button></span
+                        >
+                    </div>
+                    <div class="ulist" id="units"></div>
+                    <p class="note">
+                        Pfeil hoch füllt die Einheit auf die volle Kapazität des
+                        Generals, Pfeil runter setzt sie auf 0. Der
+                        durchgestrichene Kreis schützt eine Einheit: Sie kämpft
+                        mit, soll aber keine Verluste haben – die Suche meidet
+                        Armeen, in denen sie fällt. „Nur SK/BSK/Ritter fallen“
+                        schützt alle anderen Einheiten auf einmal. Sind mehr
+                        Einheiten eingetragen als der General führen kann, wählt
+                        die Suche daraus die beste Armee.
+                    </p>
+                </section>
+            </div>
 
-    <section class="card" id="sec-general">
-      <h2>01 // General</h2>
-      <div class="grow">
-        <select id="gen" aria-label="General wählen"></select>
-        <button type="button" class="gear" id="skbtn" title="Skills &amp; Werte des Generals öffnen">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-          <span id="skn">0/21</span>
-        </button>
-      </div>
-      <div class="gsum" id="gsum"></div>
-      <details id="mgd">
-        <summary id="mgs">Mehrere Generäle vergleichen (0 gewählt)</summary>
-        <div class="flags"><button type="button" class="mini" id="mga">Alle</button><button type="button" class="mini" id="mgn">Keine</button></div>
-        <div id="mgl" class="mgl"></div>
-        <p class="note">Ist hier mindestens ein General angehakt, sucht die Simulation pro Lager den General mit den geringsten Verlusten. Jeder General zählt mit seiner eigenen gespeicherten Skillung.</p>
-      </details>
-    </section>
+            <aside class="side">
+                <section class="card" id="sec-map">
+                    <h2>03 // Abenteuer &amp; Karte</h2>
+                    <label for="map">Abenteuer</label
+                    ><select id="map"></select>
+                    <div class="mtools">
+                        <button type="button" class="mini" id="zm">−</button
+                        ><button type="button" class="mini" id="zp">+</button
+                        ><button type="button" class="mini" id="rq">
+                            Lager auswählen: aus</button
+                        ><button
+                            type="button"
+                            class="mini"
+                            id="selclr"
+                            title="Eigene Auswahl leeren"
+                        >
+                            Auswahl leeren (<span id="selcnt">0</span>)</button
+                        ><label class="flag1 plt"
+                            ><input type="checkbox" id="showplan" checked />
+                            Plan auf Karte</label
+                        >
+                    </div>
+                    <div class="mapw" id="mapw">
+                        <div class="mapin" id="mapin">
+                            <img id="mapimg" alt="Abenteuerkarte" />
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <span
+                            ><i class="lgd boss"></i> Boss-/Anführer-Lager</span
+                        ><span><i class="lgd pick"></i> deine Auswahl</span
+                        ><span><i class="lgd ok"></i> Ergebnis ≥ 80 %</span>
+                    </div>
+                    <p class="note" id="curcamp"></p>
+                    <div class="chips" id="enemy"></div>
+                </section>
 
-    <section class="card" id="sec-units">
-      <h2>02 // Einheiten</h2>
-      <div class="cap"><i id="capbar" style="width:0"></i></div>
-      <p class="note capnote" id="captxt"></p>
-      <div class="utools">
-        <label class="flag1"><input type="checkbox" id="full"> Nur mit maximaler Einheitenanzahl angreifen</label>
-        <span class="ubar"><button type="button" class="mini" id="tank" title="Nur Schwertkämpfer, Berittene Schwertkämpfer und Ritter dürfen Verluste haben">Nur SK/BSK/Ritter fallen</button><button type="button" class="mini" id="uclear">Alle leeren</button></span>
-      </div>
-      <div class="ulist" id="units"></div>
-      <p class="note">Pfeil hoch füllt die Einheit auf die volle Kapazität des Generals, Pfeil runter setzt sie auf 0. Der durchgestrichene Kreis schützt eine Einheit: Sie kämpft mit, soll aber keine Verluste haben – die Suche meidet Armeen, in denen sie fällt. „Nur SK/BSK/Ritter fallen“ schützt alle anderen Einheiten auf einmal. Sind mehr Einheiten eingetragen als der General führen kann, wählt die Suche daraus die beste Armee.</p>
-    </section>
+                <section class="card" id="sec-result">
+                    <h2>04 // Ergebnis</h2>
+                    <label>Welche Lager?</label>
+                    <div class="flags">
+                        <label
+                            ><input
+                                type="radio"
+                                name="sc"
+                                value="all"
+                                checked
+                            />
+                            Alle</label
+                        ><label
+                            ><input type="radio" name="sc" value="boss" /> Nur
+                            Boss-Lager</label
+                        ><label
+                            ><input type="radio" name="sc" value="pick" /> Nur
+                            meine Auswahl</label
+                        ><label
+                            ><input type="radio" name="sc" value="one" /> Nur
+                            gewähltes</label
+                        >
+                    </div>
+                    <label for="runs">Läufe pro Lager</label
+                    ><select id="runs">
+                        <option>10</option>
+                        <option selected>30</option>
+                        <option>100</option>
+                    </select>
+                    <button type="button" class="go" id="go">
+                        Abenteuer mit Einsatz simulieren
+                    </button>
+                    <button type="button" class="go alt" id="srch">
+                        Einheitensuche: beste Angriffe finden
+                    </button>
+                    <div class="cap"><i id="prog" style="width: 0"></i></div>
+                    <div id="res" style="margin-top: 14px">
+                        <p class="note">
+                            Einsatz: deine feste Armee gegen jedes Lager.
+                            Einheitensuche: sie nimmt die eingetragenen
+                            Einheiten und baut für jedes Lager die beste Armee,
+                            bei Bedarf als mehrere Angriffe hintereinander.
+                        </p>
+                    </div>
+                </section>
+            </aside>
+        </main>
 
-  </div>
+        <footer class="foot">
+            <div class="foot-in">
+                <div class="fcol">
+                    <div class="fbrand">NEON<span>FRONT</span></div>
+                    <p>
+                        Inoffizieller Kampfsimulator für Fans von Die Siedler
+                        Online.
+                    </p>
+                </div>
+                <nav class="fcol flinks" aria-label="Rechtliches">
+                    <button type="button" class="link" data-legal="imp">
+                        Impressum
+                    </button>
+                    <button type="button" class="link" data-legal="priv">
+                        Datenschutz
+                    </button>
+                    <button type="button" class="link" data-legal="haft">
+                        Haftungsausschluss
+                    </button>
+                </nav>
+                <p class="fcol fwarn">
+                    <b>Hinweis:</b> Alle Ergebnisse sind Simulationen und keine
+                    Garantie. Für simulierte Kampfergebnisse wird keine
+                    Verantwortung übernommen – Nutzung auf eigene Gefahr.
+                </p>
+            </div>
+            <div class="fcopy">
+                © <span id="yr">2026</span> NEONFRONT · Fan-Projekt, nicht mit
+                Ubisoft oder Blue Byte verbunden · „Die Siedler Online“ ist eine
+                Marke der jeweiligen Rechteinhaber.
+            </div>
+        </footer>
 
-  <aside class="side">
-    <section class="card" id="sec-map">
-      <h2>03 // Abenteuer &amp; Karte</h2>
-      <label for="map">Abenteuer</label><select id="map"></select>
-      <div class="mtools"><button type="button" class="mini" id="zm">−</button><button type="button" class="mini" id="zp">+</button><button type="button" class="mini" id="rq">Lager auswählen: aus</button><button type="button" class="mini" id="selclr" title="Eigene Auswahl leeren">Auswahl leeren (<span id="selcnt">0</span>)</button><label class="flag1 plt"><input type="checkbox" id="showplan" checked> Plan auf Karte</label></div>
-      <div class="mapw" id="mapw"><div class="mapin" id="mapin"><img id="mapimg" alt="Abenteuerkarte"></div></div>
-      <div class="legend"><span><i class="lgd boss"></i> Boss-/Anführer-Lager</span><span><i class="lgd pick"></i> deine Auswahl</span><span><i class="lgd ok"></i> Ergebnis ≥ 80 %</span></div>
-      <p class="note" id="curcamp"></p>
-      <div class="chips" id="enemy"></div>
-    </section>
+        <!-- Skill-/Werte-Dialog (Zahnrad) -->
+        <dialog id="skdlg" aria-labelledby="skt">
+            <div class="dlg-in">
+                <div class="dhead">
+                    <h3>Skills // <span id="skt"></span></h3>
+                    <button
+                        type="button"
+                        class="x"
+                        id="skx"
+                        aria-label="Schließen"
+                    >
+                        ✕
+                    </button>
+                </div>
+                <div class="gsum" id="dsum"></div>
+                <div class="trh">
+                    <span>Skillbaum <b class="new" id="pts">0/21</b></span
+                    ><button type="button" class="mini" id="rst">
+                        Zurücksetzen
+                    </button>
+                </div>
+                <div id="tree"></div>
+                <p class="note">
+                    Linksklick +1 Punkt (am Maximum zurück auf 0), Rechtsklick
+                    −1. Die Skillung wird für jeden General automatisch
+                    gespeichert und fließt direkt in die Verlustrechnung ein.
+                </p>
+                <div class="trh"><span>Skillung speichern</span></div>
+                <div class="srow">
+                    <input
+                        id="sname"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Name, z. B. Ent – Variante B"
+                        aria-label="Name der Skillung"
+                    /><button type="button" class="mini" id="save">
+                        Speichern</button
+                    ><button type="button" class="mini bad" id="del">
+                        Löschen
+                    </button>
+                </div>
+                <p class="note">
+                    Speichert die aktuelle Skillung als eigenen Eintrag („★
+                    Deine Skillungen“). So kannst du denselben General mit
+                    mehreren Skillungen anlegen, auswählen und beim Vergleich
+                    gegeneinander antreten lassen. Eigene Namen wiederverwenden
+                    überschreibt die Skillung.
+                </p>
+                <div class="trh"><span>Fähigkeiten</span></div>
+                <div class="traits" id="gnote"></div>
+                <details open>
+                    <summary>Werte mit Skillung</summary>
+                    <div class="eff" id="eff"></div>
+                    <p class="note">
+                        Alle Werte, Initiative, Flankieren, Flächenschaden und
+                        die Spezialfähigkeiten des Generals werden automatisch
+                        erkannt und in die Simulation eingerechnet.
+                    </p>
+                </details>
+            </div>
+        </dialog>
 
-    <section class="card" id="sec-result">
-      <h2>04 // Ergebnis</h2>
-      <label>Welche Lager?</label>
-      <div class="flags"><label><input type="radio" name="sc" value="all" checked> Alle</label><label><input type="radio" name="sc" value="boss"> Nur Boss-Lager</label><label><input type="radio" name="sc" value="pick"> Nur meine Auswahl</label><label><input type="radio" name="sc" value="one"> Nur gewähltes</label></div>
-      <label for="runs">Läufe pro Lager</label><select id="runs"><option>10</option><option selected>30</option><option>100</option></select>
-      <button type="button" class="go" id="go">Abenteuer mit Einsatz simulieren</button>
-      <button type="button" class="go alt" id="srch">Einheitensuche: beste Angriffe finden</button>
-      <div class="cap"><i id="prog" style="width:0"></i></div>
-      <div id="res" style="margin-top:14px"><p class="note">Einsatz: deine feste Armee gegen jedes Lager. Einheitensuche: sie nimmt die eingetragenen Einheiten und baut für jedes Lager die beste Armee, bei Bedarf als mehrere Angriffe hintereinander.</p></div>
-    </section>
-  </aside>
-</main>
+        <!-- Rechtliches -->
+        <dialog id="legal" aria-label="Rechtliche Hinweise">
+            <div class="dlg-in">
+                <div class="dhead">
+                    <h3>Rechtliches</h3>
+                    <button
+                        type="button"
+                        class="x"
+                        id="lgx"
+                        aria-label="Schließen"
+                    >
+                        ✕
+                    </button>
+                </div>
+                <div class="tabs">
+                    <button type="button" data-legal="imp">Impressum</button>
+                    <button type="button" data-legal="priv">Datenschutz</button>
+                    <button type="button" data-legal="haft">
+                        Haftungsausschluss
+                    </button>
+                </div>
 
-<footer class="foot">
-  <div class="foot-in">
-    <div class="fcol">
-      <div class="fbrand">NEON<span>FRONT</span></div>
-      <p>Inoffizieller Kampfsimulator für Fans von Die Siedler Online.</p>
-    </div>
-    <nav class="fcol flinks" aria-label="Rechtliches">
-      <button type="button" class="link" data-legal="imp">Impressum</button>
-      <button type="button" class="link" data-legal="priv">Datenschutz</button>
-      <button type="button" class="link" data-legal="haft">Haftungsausschluss</button>
-    </nav>
-    <p class="fcol fwarn"><b>Hinweis:</b> Alle Ergebnisse sind Simulationen und keine Garantie. Für simulierte Kampfergebnisse wird keine Verantwortung übernommen – Nutzung auf eigene Gefahr.</p>
-  </div>
-  <div class="fcopy">© <span id="yr">2026</span> NEONFRONT · Fan-Projekt, nicht mit Ubisoft oder Blue Byte verbunden · „Die Siedler Online“ ist eine Marke der jeweiligen Rechteinhaber.</div>
-</footer>
+                <section class="lg" id="lg-imp" hidden>
+                    <h4>Impressum / Legal Notice</h4>
+                    <p class="todo"></p>
+                    <p>
+                        Angaben gemäß § 5 DDG:<br /><mark>Marcel Schmitz</mark
+                        ><br /><mark></mark><br /><mark></mark>
+                    </p>
+                    <p>Kontakt: <mark>m.schmitz.dev@gmail.com</mark></p>
+                    <p>
+                        NEONFRONT ist ein privates, nicht kommerzielles
+                        Fan-Projekt ohne Gewinnerzielungsabsicht. Es steht in
+                        keiner Verbindung zu Ubisoft, Blue Byte oder den
+                        Betreibern von Die Siedler Online. Alle Marken, Namen,
+                        Spieldaten und Grafiken gehören den jeweiligen
+                        Rechteinhabern.
+                    </p>
+                    <p>
+                        Für Inhalte externer Links wird keine Haftung
+                        übernommen; für deren Inhalt sind ausschließlich die
+                        jeweiligen Betreiber verantwortlich.
+                    </p>
+                    <p>
+                        Legal notice: NEONFRONT is a private, non-commercial fan
+                        project and is not affiliated with Ubisoft or Blue Byte.
+                        All trademarks and game assets belong to their
+                        respective owners.
+                    </p>
+                </section>
 
-<!-- Skill-/Werte-Dialog (Zahnrad) -->
-<dialog id="skdlg" aria-labelledby="skt">
-  <div class="dlg-in">
-    <div class="dhead"><h3>Skills // <span id="skt"></span></h3><button type="button" class="x" id="skx" aria-label="Schließen">✕</button></div>
-    <div class="gsum" id="dsum"></div>
-    <div class="trh"><span>Skillbaum <b class="new" id="pts">0/21</b></span><button type="button" class="mini" id="rst">Zurücksetzen</button></div>
-    <div id="tree"></div>
-    <p class="note">Linksklick +1 Punkt (am Maximum zurück auf 0), Rechtsklick −1. Die Skillung wird für jeden General automatisch gespeichert und fließt direkt in die Verlustrechnung ein.</p>
-    <div class="trh"><span>Skillung speichern</span></div>
-    <div class="srow"><input id="sname" type="text" maxlength="40" placeholder="Name, z. B. Ent – Variante B" aria-label="Name der Skillung"><button type="button" class="mini" id="save">Speichern</button><button type="button" class="mini bad" id="del">Löschen</button></div>
-    <p class="note">Speichert die aktuelle Skillung als eigenen Eintrag („★ Deine Skillungen“). So kannst du denselben General mit mehreren Skillungen anlegen, auswählen und beim Vergleich gegeneinander antreten lassen. Eigene Namen wiederverwenden überschreibt die Skillung.</p>
-    <div class="trh"><span>Fähigkeiten</span></div>
-    <div class="traits" id="gnote"></div>
-    <details open>
-      <summary>Werte mit Skillung</summary>
-      <div class="eff" id="eff"></div>
-      <p class="note">Alle Werte, Initiative, Flankieren, Flächenschaden und die Spezialfähigkeiten des Generals werden automatisch erkannt und in die Simulation eingerechnet.</p>
-    </details>
-  </div>
-</dialog>
+                <section class="lg" id="lg-priv" hidden>
+                    <h4>Datenschutzerklärung / Privacy Policy</h4>
+                    <p class="todo"></p>
+                    <p>
+                        <b>Kein Konto, kein Tracking.</b> Der Simulator läuft
+                        vollständig in deinem Browser. Es gibt keine Anmeldung,
+                        keine Cookies zu Werbe- oder Analysezwecken und keine
+                        Übertragung deiner Eingaben an einen Server.
+                    </p>
+                    <p>
+                        <b>Lokale Speicherung.</b> Gespeicherte Generäle,
+                        Skillungen und Pflicht-Lager-Markierungen werden im
+                        localStorage deines Browsers abgelegt. Diese Daten
+                        verlassen dein Gerät nicht und können jederzeit über die
+                        Browser-Einstellungen („Websitedaten löschen“) entfernt
+                        werden.
+                    </p>
+                    <p>
+                        <b>Schriftarten.</b> Die Schriften Orbitron und Rajdhani
+                        werden von Google Fonts geladen. Dabei wird deine
+                        IP-Adresse an Google übermittelt.
+                        <span class="todo"></span>
+                    </p>
+                    <p>
+                        <b>Hosting.</b> Beim Aufruf der Seite verarbeitet der
+                        Hosting-Anbieter technisch notwendige Server-Logdaten
+                        (z. B. IP-Adresse, Zeitpunkt, abgerufene Datei).
+                        Anbieter: <mark>[Hosting-Anbieter: GitHub Pages]</mark>.
+                    </p>
+                    <p>
+                        <b>Deine Rechte.</b> Du hast nach der DSGVO Rechte auf
+                        Auskunft, Berichtigung, Löschung, Einschränkung der
+                        Verarbeitung und Widerspruch sowie ein Beschwerderecht
+                        bei einer Datenschutz-Aufsichtsbehörde. Kontakt:
+                        <mark>[m-schmitz-dev@gmail.com]</mark>.
+                    </p>
+                    <p>
+                        Privacy summary: no accounts, no tracking, all data
+                        stays in your browser (localStorage). Fonts are loaded
+                        from Google Fonts.
+                    </p>
+                </section>
 
-<!-- Rechtliches -->
-<dialog id="legal" aria-label="Rechtliche Hinweise">
-  <div class="dlg-in">
-    <div class="dhead"><h3>Rechtliches</h3><button type="button" class="x" id="lgx" aria-label="Schließen">✕</button></div>
-    <div class="tabs">
-      <button type="button" data-legal="imp">Impressum</button>
-      <button type="button" data-legal="priv">Datenschutz</button>
-      <button type="button" data-legal="haft">Haftungsausschluss</button>
-    </div>
+                <section class="lg" id="lg-haft">
+                    <h4>Haftungsausschluss / Disclaimer</h4>
+                    <p>
+                        <b>Keine Gewähr für Simulationsergebnisse.</b> Alle
+                        angezeigten Kampfergebnisse, Verluste, Siegchancen und
+                        Armeeempfehlungen sind Ergebnisse einer
+                        Zufallssimulation auf Basis eines vereinfachten,
+                        angenäherten Kampfmodells. Sie können vom tatsächlichen
+                        Ergebnis im Spiel abweichen.
+                    </p>
+                    <p>
+                        <b>Nutzung auf eigene Gefahr.</b> Für die Richtigkeit,
+                        Vollständigkeit und Aktualität der Berechnungen und
+                        Spieldaten sowie für Verluste an Einheiten,
+                        Spielressourcen oder sonstige Nachteile, die aus der
+                        Nutzung der Simulation entstehen, wird keine
+                        Verantwortung und keine Haftung übernommen, soweit
+                        gesetzlich zulässig. Die Haftung bei Vorsatz, grober
+                        Fahrlässigkeit sowie für Schäden an Leben, Körper und
+                        Gesundheit bleibt unberührt.
+                    </p>
+                    <p>
+                        <b>Fan-Projekt.</b> NEONFRONT ist inoffiziell und nicht
+                        mit Ubisoft oder Blue Byte verbunden. „Die Siedler
+                        Online“ und zugehörige Namen, Daten und Grafiken sind
+                        Eigentum der jeweiligen Rechteinhaber.
+                    </p>
+                    <p>
+                        Disclaimer: All results are simulated approximations and
+                        provided without warranty. Use at your own risk. No
+                        responsibility is taken for simulated battle outcomes.
+                    </p>
+                </section>
+            </div>
+        </dialog>
 
-    <section class="lg" id="lg-imp" hidden>
-      <h4>Impressum / Legal Notice</h4>
-      <p class="todo">TODO vor Veröffentlichung: Die markierten Platzhalter durch deine echten Angaben ersetzen. Ob und welche Angaben für dein Projekt Pflicht sind (z. B. nach § 5 DDG), solltest du selbst prüfen.</p>
-      <p>Angaben gemäß § 5 DDG:<br><mark>[Vor- und Nachname]</mark><br><mark>[Straße und Hausnummer]</mark><br><mark>[PLZ Ort]</mark></p>
-      <p>Kontakt: <mark>[E-Mail-Adresse]</mark></p>
-      <p>NEONFRONT ist ein privates, nicht kommerzielles Fan-Projekt ohne Gewinnerzielungsabsicht. Es steht in keiner Verbindung zu Ubisoft, Blue Byte oder den Betreibern von Die Siedler Online. Alle Marken, Namen, Spieldaten und Grafiken gehören den jeweiligen Rechteinhabern.</p>
-      <p>Für Inhalte externer Links wird keine Haftung übernommen; für deren Inhalt sind ausschließlich die jeweiligen Betreiber verantwortlich.</p>
-      <p>Legal notice: NEONFRONT is a private, non-commercial fan project and is not affiliated with Ubisoft or Blue Byte. All trademarks and game assets belong to their respective owners.</p>
-    </section>
-
-    <section class="lg" id="lg-priv" hidden>
-      <h4>Datenschutzerklärung / Privacy Policy</h4>
-      <p class="todo">TODO: Hosting-Anbieter und Kontakt ergänzen. Diese Vorlage ersetzt keine Rechtsberatung.</p>
-      <p><b>Kein Konto, kein Tracking.</b> Der Simulator läuft vollständig in deinem Browser. Es gibt keine Anmeldung, keine Cookies zu Werbe- oder Analysezwecken und keine Übertragung deiner Eingaben an einen Server.</p>
-      <p><b>Lokale Speicherung.</b> Gespeicherte Generäle, Skillungen und Pflicht-Lager-Markierungen werden im localStorage deines Browsers abgelegt. Diese Daten verlassen dein Gerät nicht und können jederzeit über die Browser-Einstellungen („Websitedaten löschen“) entfernt werden.</p>
-      <p><b>Schriftarten.</b> Die Schriften Orbitron und Rajdhani werden von Google Fonts geladen. Dabei wird deine IP-Adresse an Google übermittelt. <span class="todo">Optional: Schriften lokal einbinden, dann entfällt dieser Absatz.</span></p>
-      <p><b>Hosting.</b> Beim Aufruf der Seite verarbeitet der Hosting-Anbieter technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt, abgerufene Datei). Anbieter: <mark>[Hosting-Anbieter, z. B. GitHub Pages]</mark>.</p>
-      <p><b>Deine Rechte.</b> Du hast nach der DSGVO Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Widerspruch sowie ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde. Kontakt: <mark>[E-Mail-Adresse]</mark>.</p>
-      <p>Privacy summary: no accounts, no tracking, all data stays in your browser (localStorage). Fonts are loaded from Google Fonts.</p>
-    </section>
-
-    <section class="lg" id="lg-haft">
-      <h4>Haftungsausschluss / Disclaimer</h4>
-      <p><b>Keine Gewähr für Simulationsergebnisse.</b> Alle angezeigten Kampfergebnisse, Verluste, Siegchancen und Armeeempfehlungen sind Ergebnisse einer Zufallssimulation auf Basis eines vereinfachten, angenäherten Kampfmodells. Sie können vom tatsächlichen Ergebnis im Spiel abweichen.</p>
-      <p><b>Nutzung auf eigene Gefahr.</b> Für die Richtigkeit, Vollständigkeit und Aktualität der Berechnungen und Spieldaten sowie für Verluste an Einheiten, Spielressourcen oder sonstige Nachteile, die aus der Nutzung der Simulation entstehen, wird keine Verantwortung und keine Haftung übernommen, soweit gesetzlich zulässig. Die Haftung bei Vorsatz, grober Fahrlässigkeit sowie für Schäden an Leben, Körper und Gesundheit bleibt unberührt.</p>
-      <p><b>Fan-Projekt.</b> NEONFRONT ist inoffiziell und nicht mit Ubisoft oder Blue Byte verbunden. „Die Siedler Online“ und zugehörige Namen, Daten und Grafiken sind Eigentum der jeweiligen Rechteinhaber.</p>
-      <p>Disclaimer: All results are simulated approximations and provided without warranty. Use at your own risk. No responsibility is taken for simulated battle outcomes.</p>
-    </section>
-  </div>
-</dialog>
-
-<script src="js/data.js"></script>
-<script src="js/core.js"></script>
-<script src="js/abilities.js"></script>
-<script src="js/icons.js"></script>
-<script src="js/skills.js"></script>
-<script src="js/generals.js"></script>
-<script src="js/units.js"></script>
-<script src="js/map.js"></script>
-<script src="js/sim.js"></script>
-<script src="js/results.js"></script>
-<script src="js/main.js"></script>
-</body>
+        <script src="js/data.js"></script>
+        <script src="js/core.js"></script>
+        <script src="js/abilities.js"></script>
+        <script src="js/icons.js"></script>
+        <script src="js/skills.js"></script>
+        <script src="js/generals.js"></script>
+        <script src="js/units.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/sim.js"></script>
+        <script src="js/results.js"></script>
+        <script src="js/main.js"></script>
+    </body>
 </html>
