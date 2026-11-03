@@ -2,10 +2,6 @@
 $('go').onclick=()=>runAll(0);
 $('srch').onclick=()=>runAll(1);
 
-// Änderungen an General-Werten: neu rechnen und pro General speichern
-['gmin','gmax','gacc','gfs','gsp','gfl','t_dmg','t_off','t_swift','t_heavy','t_hp','t_edm','t_eacc','t_boss','t_rec','t_sp']
-  .forEach(i=>{$(i).oninput=$(i).onchange=()=>{cap();autosave()}});
-
 // Generäle vergleichen
 $('mga').onclick=()=>{document.querySelectorAll('#mgl input').forEach(i=>i.checked=true);mgCount()};
 $('mgn').onclick=()=>{document.querySelectorAll('#mgl input').forEach(i=>i.checked=false);mgCount()};
@@ -13,7 +9,9 @@ $('mgn').onclick=()=>{document.querySelectorAll('#mgl input').forEach(i=>i.check
 // Karte
 $('zp').onclick=()=>{zl=Math.min(4,zl+.5);$('mapin').style.width=zl*100+'%'};
 $('zm').onclick=()=>{zl=Math.max(1,zl-.5);$('mapin').style.width=zl*100+'%'};
-$('rq').onclick=()=>{rqMode=!rqMode;$('rq').textContent='Pflicht-Lager markieren: '+(rqMode?'AN (Karte anklicken)':'aus');$('rq').classList.toggle('on',rqMode)};
+$('rq').onclick=()=>{selMode=!selMode;$('rq').textContent='Lager auswählen: '+(selMode?'AN (Karte anklicken)':'aus');$('rq').classList.toggle('on',selMode)};
+$('selclr').onclick=()=>{selSet().clear();saveSel();updSel();drawMarks()};
+$('showplan').onchange=drawMarks;
 
 // Skill-Dialog
 const skd=$('skdlg');

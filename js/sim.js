@@ -1,21 +1,21 @@
 // Kampf
-function mods(st){st=st||curState();const t=st.t,s=st.sk,g=k=>t[k]||0;return{dmg:g('dmg'),off:g('off'),swift:g('swift'),heavy:g('heavy'),hp:g('hp'),edm:g('edm'),eacc:(t.eacc??100)/100,boss:Math.max(-75,g('boss')-svK(s,'boss')),rec:Math.min(100,g('rec')+svK(s,'rec')),all:!!t.sp,acc:svK(s,'acc'),bf:svK(s,'bf'),lt:lvK(s,'lt')?1:0,fS:svK(s,'swift'),pS:spK(s,'swift'),fH:svK(s,'heavy'),fE:svK(s,'cleave'),pE:spK(s,'cleave'),sMn:svK(s,'sniper'),sMx:[0,5,10,15][lvK(s,'sniper')],fR:svK(s,'rapid'),fJ:svK(s,'jugg'),pJ:spK(s,'jugg')}}
+function mods(st){st=st||curState();const t=st.t,s=st.sk,g=k=>t[k]||0;return{dmg:g('dmg'),off:g('off'),swift:g('swift'),heavy:g('heavy'),hp:g('hp'),edm:g('edm'),eacc:(t.eacc??100)/100,boss:Math.max(-75,g('boss')-svK(s,'boss')),rec:Math.min(100,g('rec')+svK(s,'rec')),all:!!t.sp,acc:svK(s,'acc'),bf:svK(s,'bf'),lt:lvK(s,'lt')?1:0,fS:svK(s,'swift'),pS:spK(s,'swift'),fH:svK(s,'heavy'),fE:svK(s,'cleave'),pE:spK(s,'cleave'),sMn:svK(s,'sniper'),sMx:[0,5,10,15][lvK(s,'sniper')],fR:svK(s,'rapid'),fJ:svK(s,'jugg'),pJ:spK(s,'jugg'),ab:ABIL[st.u]||{}}}
 const rnd=Math.random;
-function tpl(id,side,M){const s=U[id];if(!s)return null;let hp=s.h,mn=s.mn,mx=s.mx,a=s.a,k=s.k||[],pc=k.includes('UnitSkillSplashDamage')?1:0,fl=k.includes('UnitSkillAttackWeakestTarget'),ph=k.includes('UnitSkillFirstStrike')||s.o==1?0:k.includes('UnitSkillLastStrike')?2:1;
+function tpl(id,side,M){const s=U[id];if(!s)return null;let bfu=M.bf,hp=s.h,mn=s.mn,mx=s.mx,a=s.a,k=s.k||[],pc=k.includes('UnitSkillSplashDamage')?1:0,fl=k.includes('UnitSkillAttackWeakestTarget'),ph=k.includes('UnitSkillFirstStrike')||s.o==1?0:k.includes('UnitSkillLastStrike')?2:1;
 if(side==0){let f=1+M.dmg/100;if(OF.includes(id))f*=1+M.off/100;if(SW.includes(id))f*=1+M.swift/100;if(HV.includes(id))f*=1+M.heavy/100;mn*=f;mx*=f;
+for(const r of M.ab.units||[])if(r.ids.includes(id)){const g=1+(r.dmg||0)/100;mn*=g;mx*=g;if(r.hp)hp*=1+r.hp/100;if(r.splash)pc=1;if(r.rounds)bfu=Math.max(bfu,r.rounds)}
 if(SW.includes(id)&&M.fS){mn+=M.fS;mx+=M.fS;pc=Math.max(pc,M.pS)}if(HV.includes(id)){mn+=M.fH;mx+=M.fH}if(id=='EliteSoldier'&&M.fE){mn+=M.fE;mx+=M.fE;pc=Math.max(pc,M.pE)}
 if(id=='Bowman')mx+=M.fR;if(id=='Longbowman'||id=='Marksman'){mn*=1+M.sMn/100;mx*=1+M.sMx/100}
 hp*=1+M.hp/100;a=Math.min(100,a+M.acc);if(M.all)pc=1}
-else{const f=1+M.edm/100;mn*=f;mx*=f;a=Math.min(100,a*M.eacc);if(/Boss/.test(id))hp*=1+M.boss/100}
-return{id,side,h:hp,mn,mx,a,pc,fl,ph}}
-function genT(M,st){st=st||curState();const f=1+(st.t.dmg||0)/100;return{id:st.u,side:0,h:st.h||1,mn:st.mn*f+M.fJ,mx:st.mx*f+M.fJ,a:Math.min(100,st.a+M.acc),pc:st.sp||M.all?1:M.pJ,fl:!!st.fl,ph:st.fs?0:1}}
+else{let f=1+M.edm/100;for(const r of M.ab.enemyDmg||[])if(CATM[r.cat](id))f*=1+r.v/100;if(M.ab.noFlank)fl=false;mn*=f;mx*=f;a=Math.min(100,a*M.eacc);if(/Boss/.test(id))hp*=1+M.boss/100}
+return{id,side,h:hp,mn,mx,a,pc,fl,ph,bf:bfu}}
+function genT(M,st){st=st||curState();const f=1+(st.t.dmg||0)/100;return{id:st.u,side:0,h:st.h||1,mn:st.mn*f+M.fJ,mx:st.mx*f+M.fJ,a:Math.min(100,st.a+M.acc),pc:st.sp||M.all?1:M.pJ,fl:!!st.fl,ph:st.fs?0:1,bf:Math.max(M.bf,M.ab.genRounds||0)}}
 const mkU=(t,n)=>Array.from({length:n},()=>({t,id:t.id,hp:t.h}));
 function sim(A,E,M){let r=0;const GG=A.find(u=>u.g);
-while(r<150&&A.some(u=>u.hp>0)&&E.some(u=>u.hp>0)){r++;const bf=1+M.bf/100*(r-1);
-for(let p=0;p<3;p++){const all=[...A,...E].filter(u=>u.hp>0&&u.t.ph==p);if(p==2&&M.lt&&GG&&GG.hp>0)all.push(GG);
+while(r<150&&A.some(u=>u.hp>0)&&E.some(u=>u.hp>0)){r++;for(let p=0;p<3;p++){const all=[...A,...E].filter(u=>u.hp>0&&u.t.ph==p);if(p==2&&M.lt&&GG&&GG.hp>0)all.push(GG);
 const LA=A.filter(u=>u.hp>0),LE=E.filter(u=>u.hp>0),ptr=[0,0];
 for(const u of all){const t=u.t,L=t.side?LA:LE,s=t.side?0:1;let f=ptr[s];while(f<L.length&&L[f].hp<=0)f++;ptr[s]=f;if(f>=L.length)continue;
-let d=rnd()*100<t.a?t.mx:t.mn;if(!t.side)d*=bf;const spl=t.pc>=1||(t.pc>0&&rnd()<t.pc);let i=f;
+let d=rnd()*100<t.a?t.mx:t.mn;if(!t.side)d*=1+(t.bf||0)/100*(r-1);const spl=t.pc>=1||(t.pc>0&&rnd()<t.pc);let i=f;
 while(d>0){let x=null;if(t.fl){for(let q=f;q<L.length;q++){const y=L[q];if(y.hp>0&&!y.g&&(!x||y.t.h<x.t.h))x=y}if(!x&&L[i]&&L[i].hp>0)x=L[i]}else{while(i<L.length&&L[i].hp<=0)i++;x=i<L.length?L[i]:null}
 if(!x)break;x.hp-=d;if(x.hp>0||!spl)break;d=-x.hp}}}}
 const loss={};A.forEach(u=>{if(u.hp<=0&&!u.g)loss[u.id]=(loss[u.id]||0)+1});return{win:!E.some(u=>u.hp>0),r,loss,gd:!!(GG&&GG.hp<=0),E:E.filter(u=>u.hp>0).map(u=>({t:u.t,id:u.id,hp:u.t.h}))}}

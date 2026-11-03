@@ -7,7 +7,7 @@ const S='Skill_',TREE=[[['IncreaseBowmanMaximumAD','rapid',3],['IncreaseGeneralS
 const GL=d=>`<svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
 const STAR='M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.3l6.1-.7z',HEART='M12 20s-7-4.400-7-9.500A4 4 0 0 1 12 8a4 4 0 0 1 7 2.500C19 15.600 12 20 12 20z',CHEV='M6 6l6 6-6 6M13 6l6 6-6 6';
 const SKI={IncreaseBowmanMaximumAD:'u:Bowman',IncreaseGeneralSplashAndAD:'u:General',ResurrectLosses:'g:M12 5v14M5 12h14',IncreasePeacefulMovementSpeed:'g:'+CHEV,IncreaseLongbowmanAndMarksmanAD:'u:Longbowman',DescreaseBossHP:'u:_skull',GetRecruits:'u:Recruit',IncreaseTravelSpeed:'g:'+CHEV,IncreaseSwiftSplashAndAD:'u:Cavalry',IncreaseADEveryRound:'g:M13 3L5 14h6l-1 7 8-11h-6z',IncreaseXP:'g:'+STAR,IncreaseRecoverySpeed:'g:'+HEART,IncreaseEliteSoldierSplashAndAD:'u:EliteSoldier',IncreaseHeavyAD:'u:Cannoneer',IncreaseCapacity:'g:M4 4h16v16H4zM12 8v8M8 12h8',IncreaseCombatSpeed:'g:M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z',GeneralAttacksTwice:'g:M5 19L19 5M5 12L12 5M12 19l7-7',IncreaseAccuracy:'g:M12 3v4M12 17v4M3 12h4M17 12h4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',GetStarCoins:'g:'+STAR,InstantRecovery:'g:'+HEART};
-const skIco=id=>{const v=SKI[id]||'';return v.startsWith('u:')?ico(v.slice(2)):v.startsWith('g:')?GL(v.slice(2)):''};
+const skIco=id=>SKIMG[id]?`<img class="ic sic" src="${SKIMG[id]}" alt="">`:(()=>{const v=SKI[id]||'';return v.startsWith('u:')?ico(v.slice(2)):v.startsWith('g:')?GL(v.slice(2)):''})();
 const SKM={};let sk={};
 TREE.forEach((r,ri)=>r.forEach(s=>SKM[s[0]]={k:s[1],mx:s[2],r:ri,n:D.s[S+s[0]]||s[0]}));
 const spent=(f)=>Object.keys(sk).filter(f).reduce((a,k)=>a+sk[k],0);
