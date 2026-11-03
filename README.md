@@ -1,6 +1,7 @@
 <div align="center">
 
 # NEON**FRONT**
+
 ### Siedler Kampflabor // Cyber Battle Lab
 
 Inoffizieller Kampfsimulator für **Die Siedler Online** im Neon-/Cyberpunk-Look –
@@ -36,8 +37,8 @@ NEONFRONT berechnet per Zufallssimulation (Monte-Carlo), wie sich eine Armee geg
 
 ## Screenshots
 
-| Skill-Dialog | Plan im Vollbild |
-|:---:|:---:|
+|           Skill-Dialog           |               Plan im Vollbild                |
+| :------------------------------: | :-------------------------------------------: |
 | ![Skill-Dialog](docs/skills.png) | ![Karte im Vollbild](docs/map-fullscreen.png) |
 
 > Die Screenshots entstanden ohne die Google-Schriften, daher weichen Überschriften leicht vom Original ab.
@@ -47,13 +48,13 @@ NEONFRONT berechnet per Zufallssimulation (Monte-Carlo), wie sich eine Armee geg
 Es ist kein Build-System nötig.
 
 ```bash
-git clone <dein-repo>
+git clone https://github.com/marcel-schmitz-dev/neonfront-Kampf-Simulator
 cd neonfront
 # einfach index.html im Browser öffnen – oder lokal servieren:
 python3 -m http.server 8080
 ```
 
-Für GitHub Pages: *Settings → Pages → Branch `main`, Ordner `/ (root)`*.
+Für GitHub Pages: _Settings → Pages → Branch `main`, Ordner `/ (root)`_.
 
 ## Bedienung in 4 Schritten
 
@@ -106,11 +107,11 @@ Mögliche Bausteine: `units` (Bonus/Malus für eigene Einheiten: `hp`, `dmg`, `a
 
 - Generäle und Fähigkeiten: [tsowiki.eu](https://tsowiki.eu/specialists/generals/)
 - Skillwerte: Entwickler-Angaben (Dev Diary 2017)
-- Spieldaten und Grafiken stammen aus *Die Siedler Online*.
+- Spieldaten und Grafiken stammen aus _Die Siedler Online_.
 
 ## Rechtliches
 
-NEONFRONT ist ein **inoffizielles Fan-Projekt** ohne Gewinnerzielungsabsicht und steht in keiner Verbindung zu Ubisoft oder Blue Byte. *Die Siedler Online* und zugehörige Namen, Daten und Grafiken gehören den jeweiligen Rechteinhabern.
+NEONFRONT ist ein inoffizielles Fan-Projekt und steht in keiner Verbindung zu CipSoft oder Ubisoft. Die Siedler Online ist eine Marke von Ubisoft; Betrieb, Entwicklung und Infrastruktur werden von CipSoft verantwortet. Alle Spieldaten, Icons und Grafiken gehören den jeweiligen Rechteinhabern.
 
 **Haftungsausschluss:** Für simulierte Kampfergebnisse wird keine Verantwortung übernommen – Nutzung auf eigene Gefahr.
 
