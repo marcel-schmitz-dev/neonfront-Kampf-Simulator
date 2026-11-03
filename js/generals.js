@@ -1,45 +1,67 @@
-// ---------- Generäle: Auswahl, Fähigkeiten, Skillung (pro General gespeichert) ----------
+// ---------- Generäle: Auswahl, Fähigkeiten, Skillungen ----------
+// Jeder Standard-General merkt sich automatisch seine Skillung (BUILDS).
+// Zusätzlich können beliebig viele benannte Skillungen gespeichert werden (SAVED),
+// auch mehrfach vom selben General – z. B. zum Testen verschiedener Varianten.
 const cmp=(a,b)=>a.n.localeCompare(b.n,'de');
 const std=[...D.g].sort(cmp);
-const base=v=>D.g.find(g=>g.u==v.slice(2));
+
+let SAVED=[];try{SAVED=JSON.parse(localStorage.getItem('nf_gens')||'[]')}catch(e){}
+const persist=()=>{try{localStorage.setItem('nf_gens',JSON.stringify(SAVED))}catch(e){}};
+let BUILDS={};try{BUILDS=JSON.parse(localStorage.getItem('nf_builds')||'{}')}catch(e){}
+const persistB=()=>{try{localStorage.setItem('nf_builds',JSON.stringify(BUILDS))}catch(e){}};
+
+const isVar=v=>v.startsWith('S:');
+const varOf=v=>SAVED.find(x=>x.name==v.slice(2));
+const base=v=>D.g.find(g=>g.u==(isVar(v)?varOf(v).u:v.slice(2)));
+const varLabel=x=>`${x.name} (${(D.g.find(g=>g.u==x.u)||{n:x.u}).n})`;
 
 function genOpts(keep){
   const s=$('gen');s.innerHTML='';
-  std.forEach(g=>s.append(new Option(g.n,'G:'+g.u)));
+  SAVED=SAVED.filter(x=>D.g.some(g=>g.u==x.u));
+  if(SAVED.length){
+    const o=document.createElement('optgroup');o.label='Deine Skillungen';
+    [...SAVED].sort((a,b)=>a.name.localeCompare(b.name,'de')).forEach(x=>o.append(new Option('★ '+varLabel(x),'S:'+x.name)));
+    s.append(o);
+  }
+  const o=document.createElement('optgroup');o.label='Generäle';
+  std.forEach(g=>o.append(new Option(g.n,'G:'+g.u)));s.append(o);
   let last=null;try{last=localStorage.getItem('nf_lastgen')}catch(e){}
-  s.value=keep||(last&&D.g.some(g=>'G:'+g.u==last)?last:'G:ResoluteGeneral');
+  s.value=keep||last||'G:ResoluteGeneral';
+  if(!s.value)s.value='G:ResoluteGeneral';
   if(!s.value)s.value='G:'+std[0].u;
   mgList();
 }
 
-// ----- Mehrere Generäle vergleichen -----
+// ----- Mehrere Generäle / Skillungen vergleichen -----
 const mgSel=()=>[...document.querySelectorAll('#mgl input:checked')].map(i=>i.value);
 const mgCount=()=>{$('mgs').textContent='Mehrere Generäle vergleichen ('+mgSel().length+' gewählt)'};
 function mgList(){
-  const d=$('mgl');d.innerHTML='';
-  std.forEach(g=>{
+  const d=$('mgl'),keep=new Set(mgSel());d.innerHTML='';
+  const add=(v,t)=>{
     const l=document.createElement('label');l.className='mgi';
-    l.innerHTML=`<input type="checkbox" value="G:${g.u}"> ${g.n}`;
+    l.innerHTML=`<input type="checkbox" value="${v}"${keep.has(v)?' checked':''}> ${t}`;
     d.append(l);l.querySelector('input').onchange=mgCount;
-  });
+  };
+  [...SAVED].sort((a,b)=>a.name.localeCompare(b.name,'de')).forEach(x=>add('S:'+x.name,'★ '+varLabel(x)));
+  std.forEach(g=>add('G:'+g.u,g.n));
   mgCount();
 }
 
-// ----- Skillung: pro General automatisch gespeichert -----
-let BUILDS={};try{BUILDS=JSON.parse(localStorage.getItem('nf_builds')||'{}')}catch(e){}
-const persistB=()=>{try{localStorage.setItem('nf_builds',JSON.stringify(BUILDS))}catch(e){}};
+// ----- Skillung speichern -----
 let loading=false;
 function autosave(){
   if(loading)return;
-  BUILDS[base($('gen').value).u]={sk:{...sk}};
-  persistB();
+  const v=$('gen').value;
+  if(isVar(v)){const x=varOf(v);if(x){x.sk={...sk};persist()}}
+  else{BUILDS[v.slice(2)]={sk:{...sk}};persistB()}
 }
+const skOf=v=>isVar(v)?{...((varOf(v)||{}).sk||{})}:{...((BUILDS[v.slice(2)]||{}).sk||{})};
 
 // Alle Werte kommen aus den Generaldaten (D.g) + Fähigkeiten (ABIL) – nur die Skillung ist veränderbar.
 function stateOf(v){
-  const g=base(v),b=BUILDS[g.u];
-  return{n:g.n,u:g.u,mn:g.mn,mx:g.mx,a:g.a,fs:!!g.fs,sp:!!g.sp,fl:!!g.fl,
-    t:{eacc:100,...(g.t||{})},sk:{...((b&&b.sk)||{})},c:g.c,h:g.h};
+  const g=base(v),ab=ABIL[g.u]||{};
+  return{n:isVar(v)?v.slice(2):g.n,u:g.u,mn:g.mn,mx:g.mx,a:g.a,fs:!!g.fs,sp:!!g.sp,fl:!!g.fl,
+    t:{eacc:100,...(ab.t||g.t||{})},sk:skOf(v),c:g.c,h:g.h};
 }
 function curState(){const st=stateOf($('gen').value);st.sk={...sk};return st}
 
@@ -69,11 +91,26 @@ function renderTraits(){
 function pickGen(){
   loading=true;
   const v=$('gen').value,g=base(v);
-  sk={...((BUILDS[g.u]||{}).sk||{})};
-  $('skt').textContent=g.n;
+  sk=skOf(v);
+  $('skt').textContent=isVar(v)?v.slice(2)+' ('+g.n+')':g.n;
+  $('sname').value=isVar(v)?v.slice(2):'';
+  $('del').disabled=!isVar(v);
   try{localStorage.setItem('nf_lastgen',v)}catch(e){}
   renderTraits();
   loading=false;
   drawTree();
 }
 $('gen').onchange=pickGen;
+
+// Skillung unter eigenem Namen speichern (derselbe General darf mehrfach vorkommen)
+$('save').onclick=()=>{
+  const name=$('sname').value.trim();if(!name)return;
+  const u=base($('gen').value).u,i=SAVED.findIndex(x=>x.name==name);
+  if(i>=0)SAVED[i]={name,u,sk:{...sk}};else SAVED.push({name,u,sk:{...sk}});
+  persist();genOpts('S:'+name);pickGen();
+};
+$('del').onclick=()=>{
+  const v=$('gen').value;if(!isVar(v))return;
+  if(!confirm('Skillung „'+v.slice(2)+'“ löschen?'))return;
+  SAVED=SAVED.filter(x=>x.name!=v.slice(2));persist();genOpts();pickGen();
+};

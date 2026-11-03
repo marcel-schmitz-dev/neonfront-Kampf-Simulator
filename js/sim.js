@@ -3,7 +3,7 @@ function mods(st){st=st||curState();const t=st.t,s=st.sk,g=k=>t[k]||0;return{dmg
 const rnd=Math.random;
 function tpl(id,side,M){const s=U[id];if(!s)return null;let bfu=M.bf,hp=s.h,mn=s.mn,mx=s.mx,a=s.a,k=s.k||[],pc=k.includes('UnitSkillSplashDamage')?1:0,fl=k.includes('UnitSkillAttackWeakestTarget'),ph=k.includes('UnitSkillFirstStrike')||s.o==1?0:k.includes('UnitSkillLastStrike')?2:1;
 if(side==0){let f=1+M.dmg/100;if(OF.includes(id))f*=1+M.off/100;if(SW.includes(id))f*=1+M.swift/100;if(HV.includes(id))f*=1+M.heavy/100;mn*=f;mx*=f;
-for(const r of M.ab.units||[])if(r.ids.includes(id)){const g=1+(r.dmg||0)/100;mn*=g;mx*=g;if(r.hp)hp*=1+r.hp/100;if(r.splash)pc=1;if(r.rounds)bfu=Math.max(bfu,r.rounds)}
+for(const r of M.ab.units||[])if(r.ids.includes(id)){const g=1+(r.dmg||0)/100;mn*=g;mx*=g;if(r.hp)hp*=1+r.hp/100;if(r.splash)pc=1;if(r.acc)a=Math.min(100,a+r.acc);if(r.flank)fl=true;if(r.rounds)bfu=Math.max(bfu,r.rounds)}
 if(SW.includes(id)&&M.fS){mn+=M.fS;mx+=M.fS;pc=Math.max(pc,M.pS)}if(HV.includes(id)){mn+=M.fH;mx+=M.fH}if(id=='EliteSoldier'&&M.fE){mn+=M.fE;mx+=M.fE;pc=Math.max(pc,M.pE)}
 if(id=='Bowman')mx+=M.fR;if(id=='Longbowman'||id=='Marksman'){mn*=1+M.sMn/100;mx*=1+M.sMx/100}
 hp*=1+M.hp/100;a=Math.min(100,a+M.acc);if(M.all)pc=1}

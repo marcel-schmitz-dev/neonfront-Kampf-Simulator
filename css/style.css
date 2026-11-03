@@ -124,6 +124,9 @@ button.go.alt{background:linear-gradient(90deg,#d414b0,#00b8c8);margin-top:10px}
 .sk.max{background:linear-gradient(135deg,#00f0ff,#ff2bd6);color:#05030c;border-color:#fff}
 .sk.max b{color:#05030c}
 
+.srow{display:grid;grid-template-columns:1fr auto auto;gap:6px;margin-top:8px}
+.mini:disabled{opacity:.35;cursor:not-allowed}
+
 /* ---------- Fähigkeiten & Plan-Zusammenfassung ---------- */
 .traits ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
 .traits li{padding:6px 9px;border-left:2px solid var(--mg);background:#ff2bd612;font-size:14px;color:#d8e8f4}
