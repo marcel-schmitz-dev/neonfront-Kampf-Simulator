@@ -1,0 +1,24 @@
+async function runAll(mode){const N=+$('runs').value,full=$('full').checked,msg=t=>$('res').innerHTML=`<p class="note" style="color:var(--bad)">${t}</p>`;let pool=null,man=null;
+if(mode){pool={};D.p.forEach(id=>{const n=+$('u_'+id).value||0;if(n>0)pool[id]=n});if(!sum(pool))return msg('Bitte bei Einheiten eine Anzahl eintragen.')}
+else{man={};D.p.forEach(id=>{const n=+$('u_'+id).value||0;if(n>0)man[id]=n});if(!sum(man))return msg('Bitte bei Einheiten eine Anzahl eintragen.')}
+const vs=mgSel(),sts=vs.length?vs.map(stateOf):[curState()],ctx=sts.map(st=>{const M=mods(st),T={};D.p.forEach(id=>T[id]=tpl(id,0,M));return{st,M,T,G:{t:genT(M,st)},cp:capMax(st)}});
+const sc0=document.querySelector('input[name=sc]:checked').value,rq=reqSet(),idx=cur.c.map((c,i)=>i).filter(i=>sc0=='all'||(sc0=='req'&&rq.has(i))||(sc0=='one'&&i==sc));
+if(!idx.length)return msg('Keine Lager ausgewählt.');
+$('go').disabled=$('srch').disabled=true;RES={};const sumL={},need={},gc={};let wins=0,waves=0;
+for(let k=0;k<idx.length;k++){const ci=idx[k],c=cur.c[ci];busy=ci;let best=null;
+for(const x of ctx){$('curcamp').textContent=`Simuliere Lager ${lab(c,ci)} (${k+1}/${idx.length}) mit ${x.st.n} …`;drawMarks();await new Promise(r=>setTimeout(r,0));
+const plan=mode?await search(c,pool,x.M,x.T,x.G,x.cp,full):[clipTo(man,x.cp)],r=execPlan(c,plan,N,x.M,x.T,x.G,mode?pool:null);r.plan=plan;r.gn=x.st.n;r.cost=lossCost(r);if(!best||better(r,best))best=r}
+RES[ci]=best;wins+=best.p/100;waves+=best.plan.length;gc[best.gn]=(gc[best.gn]||0)+1;
+const tot={};best.plan.forEach(s=>{for(const u in s)tot[u]=(tot[u]||0)+s[u]});for(const u in tot)need[u]=Math.max(need[u]||0,tot[u]);
+for(const u in best.L)sumL[u]=(sumL[u]||0)+best.L[u]*best.p/100;$('prog').style.width=(k+1)/idx.length*100+'%'}
+busy=-1;$('curcamp').textContent='';drawMarks();$('go').disabled=$('srch').disabled=false;
+const n=idx.length,safe=idx.filter(i=>RES[i].p>=95).length,ch=(o)=>Object.entries(o).map(([u,v])=>`<span class="chip">${ico(u)}${Math.round(v)}</span>`).join('');
+const tr=idx.map(i=>{const c=cur.c[i],r=RES[i],col=r.p>=80?'var(--ok)':r.p>=40?'#ffd23f':'var(--bad)',bs=Object.keys(c.j).some(x=>/Boss|Leader/.test(x));
+const at=r.plan.map((s,j)=>`<div class="wv"><b>A${j+1}</b> ${Object.entries(s).map(([u,v])=>`<span class="lc">${ico(u)}${v}</span>`).join('')}</div>`).join('');
+const ls=Object.entries(r.mm).filter(([u,v])=>v[1]>0).map(([u,v])=>`<span class="lc">${ico(u)}${v[0]}–${v[1]} (${r.L[u].toFixed(0)})</span>`).join('');
+return`<tr onclick="pickCamp(${i})"><td><b>${lab(c,i)}</b>${bs?' ★':''}<div class="ls">${r.gn}</div></td><td style="color:${col}">${r.p.toFixed(0)}%${r.gd>0?`<div class="ls">General fällt ${r.gd.toFixed(0)}%</div>`:''}${r.viol>0?`<div class="ls" style="color:var(--bad)">Schutz −${r.viol.toFixed(0)}%</div>`:''}</td><td>${at}</td><td>${ls||'–'}</td></tr>`}).join('');
+$('res').innerHTML=`<div class="stats"><div><b>${wins.toFixed(1)}/${n}</b>erwartete Siege</div><div><b>${safe}/${n}</b>sichere Lager (≥95 %)</div><div><b>${waves}</b>Angriffswellen</div><div><b>${Object.values(RES).filter(r=>r.viol>0).length}</b>Lager mit Schutzverletzung</div></div>
+<label>Eingesetzte Generäle</label><div class="chips">${Object.entries(gc).map(([g,v])=>`<span class="chip">${g}: ${v}×</span>`).join('')}</div>
+<label>Benötigte Truppen (Maximum pro Lager)</label><div class="chips">${ch(need)}</div>
+<label>Erwartete Gesamtverluste</label><div class="chips">${ch(sumL)||'–'}</div>
+<div class="tw"><table><tr><th>Lager / General</th><th>Sieg</th><th>Angriffe</th><th>Verluste min–max (Ø)</th></tr>${tr}</table></div><p class="note">Kampfmodell nach den Spielregeln: Genauigkeit = Chance auf den hohen Schadenswert, Splash trägt Überschussschaden zur nächsten Einheit, Flankieren trifft die Einheit mit den wenigsten Basis-HP (nie den General). Reihenfolge der Ziele und Rundenablauf sind genähert. Verluste nach Rückgewinn. Der General kämpft als Einheit mit eigenen Lebenspunkten und steht in der Schlachtreihe ganz hinten. Mehrere Angriffe pro Lager: getötete Gegner bleiben tot, verletzte heilen zwischen den Angriffen voll, jeder Angriff nutzt einen frischen General. Angriffe innerhalb einer Phase sind gleichzeitig. ★ = Boss-/Anführer-Lager.</p><p class="note">Skillwerte aus den Entwickler-Angaben (Dev Diary 2017). Unsicher: Splash-Chance von Unstoppable Charge und dessen Bonus.</p>`}
