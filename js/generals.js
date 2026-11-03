@@ -60,7 +60,7 @@ const skOf=v=>isVar(v)?{...((varOf(v)||{}).sk||{})}:{...((BUILDS[v.slice(2)]||{}
 // Alle Werte kommen aus den Generaldaten (D.g) + Fähigkeiten (ABIL) – nur die Skillung ist veränderbar.
 function stateOf(v){
   const g=base(v),ab=ABIL[g.u]||{};
-  return{n:isVar(v)?v.slice(2):g.n,u:g.u,mn:g.mn,mx:g.mx,a:g.a,fs:!!g.fs,sp:!!g.sp,fl:!!g.fl,
+  return{n:isVar(v)?v.slice(2):g.n,u:g.u,mn:g.mn,mx:g.mx,a:g.a,fs:!!g.fs,ls:!!g.ls,sp:!!g.sp,fl:!!g.fl,
     t:{eacc:100,...(ab.t||g.t||{})},sk:skOf(v),c:g.c,h:g.h};
 }
 function curState(){const st=stateOf($('gen').value);st.sk={...sk};return st}

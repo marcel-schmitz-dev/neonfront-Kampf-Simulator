@@ -15,10 +15,14 @@
 // Einfache Werte (Schnelle +%, Gegner-Schaden, Rückgewinn …) stehen weiter in D.g[].t (data.js).
 // ============================================================
 const PRO=['Soldier','EliteSoldier','Swordsman'];   // Berufsinfanterie
+const DEF=['Recruit','Militia','Soldier','EliteSoldier','Swordsman','MountedSwordsman']; // Verteidigungseinheiten (Annahme)
 const CATM={
   off:id=>OF.includes(id)||(/bowman|crossbow|cavalry|marksman|knight|rider|archer/i.test(id)&&!/swordsman/i.test(id)),
   hv:id=>HV.includes(id)||/cann?on|besieg/i.test(id),
-  all:()=>true
+  all:()=>true,
+  boss:id=>/Boss/.test(id),
+  sw:id=>/cavalry|rider|knight/i.test(id),                                  // gegnerische Schnelle
+  def:id=>!/Boss/.test(id)&&/recruit|militia|soldier|swordsman/i.test(id)  // gegnerische Verteidigungseinheiten
 };
 const ABIL={
   ResoluteGeneral:{
@@ -45,5 +49,43 @@ const ABIL={
     enemyDmg:[{cat:'all',v:-10}],
     noFlank:true,
     desc:['Gegnerische Einheiten: −10 % Schaden','Gegner können nicht zuerst deine schwächsten Einheiten angreifen (kein Flankieren)']
+  },
+  // ---- weitere Generäle (Quelle: tsowiki.eu/specialists/generals) ----
+  Halloween2019General:{   // Jüngerer Zwillingsgeneral
+    units:[{ids:DEF,acc:10,flank:true}],
+    desc:['Verteidigungseinheiten: Treffer +10 %, Flankieren']
+  },
+  FrostyGeneral:{
+    units:[{ids:DEF,dmg:30,splash:true}],
+    desc:['Verteidigungseinheiten: +30 % Schaden, Flächenschaden']
+  },
+  AssassinGeneral:{        // Vermummter General
+    t:{},
+    enemyDmg:[{cat:'boss',v:-25}],
+    enemyHp:[{cat:'boss',v:-25},{cat:'def',v:-25}],
+    desc:['Gegnerische Bosse: −25 % Lebenspunkte, −25 % Schaden','Gegnerische Verteidigungseinheiten: −25 % Lebenspunkte']
+  },
+  Brohmann:{
+    units:[{ids:['Cavalry','Knight'],flat:30},{ids:['Knight'],flank:true}],
+    desc:['Reiterei, Ritter: +30 Schaden','Ritter: Flankieren']
+  },
+  BorisGeneral:{
+    enemyDmg:[{cat:'sw',v:-50}],
+    desc:['Schnelle Einheiten: +50 % Schaden','Gegnerische Schnelle Einheiten: −50 % Schaden']
+  },
+  SylvanaGeneral:{
+    enemyDmg:[{cat:'sw',v:-50}],
+    desc:['Schnelle Einheiten: +50 % Schaden','Gegnerische Schnelle Einheiten: −50 % Schaden']
+  },
+  GeneralVargus:{
+    t:{},
+    enemyDmg:[{cat:'all',v:-5}],
+    noFlank:true,
+    desc:['Gegnerische Einheiten: −5 % Schaden, können nicht flankieren']
+  },
+  GeneralNusala:{
+    t:{},
+    units:[{ids:OF,splash:true,flank:true}],
+    desc:['Angriffseinheiten: Flächenschaden, Flankieren']
   }
 };

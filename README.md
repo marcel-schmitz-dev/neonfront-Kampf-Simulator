@@ -9,7 +9,7 @@ index.html        Markup (Header, Karten, Dialoge, Footer)
 css/style.css     gesamtes Styling
 js/data.js        Spieldaten (Einheiten, Generäle, Karten, Icons) – große Datei
 js/core.js        Hilfsfunktionen, Konstanten, Einheiten-Kürzel
-js/abilities.js   Fähigkeiten der Generäle (z. B. Entschlossener General) – hier neue Generäle ergänzen
+js/abilities.js   Fähigkeiten der Generäle (Quelle: tsowiki.eu/specialists/generals) – hier neue Generäle ergänzen
 js/icons.js       Original-Skill-Icons (Base64)
 js/skills.js      Skillbaum
 js/generals.js    Generäle, pro General gespeicherte Skillung

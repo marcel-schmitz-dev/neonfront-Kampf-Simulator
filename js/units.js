@@ -44,7 +44,7 @@ function cap(){
 function effDetail(st,M,mn,mx,a){
   const spc=st.sp||M.all?100:M.pJ*100;
   const r=[['Schaden',Math.round(mn)+'–'+Math.round(mx)],['Treffer',a+' %'],['Kapazität',capMax(st)],['Lebenspunkte',st.h],
-    ['Angriffe/Runde',M.lt?2:1],['Initiative',st.fs?'Erstschlag':'Normal'],['Splash',spc?spc.toFixed(0)+' %':'–'],['Flankieren',st.fl?'Ja':'Nein']];
+    ['Angriffe/Runde',M.lt?2:1],['Initiative',st.fs?'Erstschlag':st.ls?'Letzter Schlag':'Normal'],['Splash',spc?spc.toFixed(0)+' %':'–'],['Flankieren',st.fl?'Ja':'Nein']];
   if(M.fS)r.push(['Schnelle',`+${M.fS} Schaden, Splash ${Math.round(M.pS*100)} %`]);
   if(M.fE)r.push(['Elitesoldaten',`+${M.fE} Schaden, Splash ${Math.round(M.pE*100)} %`]);
   if(M.fH)r.push(['Schwere','+'+M.fH+' Schaden']);
