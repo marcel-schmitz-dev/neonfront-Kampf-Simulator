@@ -14,13 +14,13 @@ const gShort=n=>n.replace(/^General(in)?\s+/,'').replace(/[\s-]*General(in)?$/,'
 
 function pickMap(){
   cur=D.m[$('map').value];RES={};PLAN={};busy=-1;
-  $('mapimg').src=cur.img;drawMarks();pickCamp(0);updSel();
+  $('mapimg').src=cur.img;drawMarks();pickCamp(0);updSel();fitMap();
 }
 function updSel(){$('selcnt').textContent=selSet().size}
 
 function drawMarks(){
   document.querySelectorAll('.mk,.ptag').forEach(e=>e.remove());
-  const sel=selSet(),showPlan=$('showplan').checked;
+  const sel=selSet(),showPlan=$('showplan').checked,isFs=$('sec-map').classList.contains('fs');
   cur.c.forEach((c,i)=>{
     if(c.x==null)return;
     const b=document.createElement('button'),r=RES[i],left=c.x/cur.w*100+'%',top=c.y/cur.h*100+'%';
@@ -35,7 +35,8 @@ function drawMarks(){
       const t=document.createElement('div');t.className='ptag';t.style.left=left;t.style.top=top;
       t.style.setProperty('--c',pl.p>=80?'#39ff88':pl.p>=40?'#ffd23f':'#ff4d6d');
       const w=pl.plan.length;
-      t.innerHTML=`<b>${gShort(pl.gn)}</b> ${abbr(pl.plan[0])}${w>1?` <i>+${w-1}</i>`:''}`;
+      t.innerHTML=isFs?`<b>${gShort(pl.gn)}</b> ${pl.plan.map(abbr).join(' <i>›</i> ')}`:`<b>${gShort(pl.gn)}</b> ${abbr(pl.plan[0])}${w>1?` <i>+${w-1}</i>`:''}`;
+      t.title=pl.gn+': '+pl.plan.map((a,k)=>'Angriff '+(k+1)+': '+abbr(a)).join(' | ');
       $('mapin').append(t);
     }
   });

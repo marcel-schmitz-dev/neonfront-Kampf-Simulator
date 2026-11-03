@@ -203,6 +203,21 @@ mark{background:#ffd23f22;color:var(--warn);padding:0 4px;border-radius:2px}
 .chip{display:flex;align-items:center;gap:6px;background:#ff2bd618;border:1px solid #ff2bd666;padding:3px 8px 3px 3px;border-radius:3px;font-size:14px}
 .chip small{color:var(--mu)}
 
+/* Vollbild-Karte */
+.mini.icon{display:inline-grid;place-items:center;padding:5px 8px}
+.i-shrink{display:none}.fs .i-shrink{display:block}.fs .i-expand{display:none}
+html.noscroll{overflow:hidden}
+.side.fs-on{position:static;max-height:none;overflow:visible}
+.card.fs{position:fixed;inset:0;z-index:80;max-height:none;border-radius:0;clip-path:none;display:flex;flex-direction:column;overflow:hidden;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:#07040f}
+.fs h2{margin-bottom:8px}
+.fs #zm,.fs #zp{display:none}
+.fs .mapw{flex:1;min-height:0;max-height:none;display:grid;place-items:center;overflow:auto;margin-top:8px}
+.fs .mapin{margin:auto}
+.fs .mk{font-size:12px;min-width:24px;padding:1px 4px}
+.fs .ptag{font-size:13px;padding:2px 7px;transform:translate(14px,-50%)}
+.fs #enemy{max-height:70px;overflow:auto;margin-top:6px}
+.fs #curcamp{display:none}
+
 /* ---------- Ergebnis ---------- */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
 .stats div{border:1px solid #00f0ff44;padding:8px;background:#05030c}
