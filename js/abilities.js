@@ -43,9 +43,9 @@ const DEF = [
 /** @type {Object<string, function(string): boolean>} Prüfer für Einheitenkategorien */
 const CATM = {
     off: (id) =>
-        OF.includes(id) ||
-        (/bowman|crossbow|cavalry|marksman|knight|rider|archer/i.test(id) &&
-            !/swordsman/i.test(id)),
+        (OF.includes(id) && !SW.includes(id)) ||
+        (/bowman|crossbow|marksman|archer/i.test(id) &&
+            !/cavalry|mounted|rider|knight|swordsman/i.test(id)),
     hv: (id) => HV.includes(id) || /cann?on|besieg/i.test(id),
     all: () => true,
     boss: (id) => /Boss/.test(id),
