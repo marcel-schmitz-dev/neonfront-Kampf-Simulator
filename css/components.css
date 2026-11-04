@@ -1,0 +1,214 @@
+/* ---------- Karten ---------- */
+.card {
+    min-width: 0;
+    position: relative;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: linear-gradient(160deg, #120b2ecc, #0a0618cc);
+    box-shadow:
+        0 0 18px #00f0ff22,
+        inset 0 0 30px #ff2bd612;
+    clip-path: polygon(
+        0 0,
+        calc(100% - 16px) 0,
+        100% 16px,
+        100% 100%,
+        16px 100%,
+        0 calc(100% - 16px)
+    );
+}
+.cfg .card:nth-child(2) {
+    border-color: #ff2bd677;
+    box-shadow:
+        0 0 18px #ff2bd633,
+        inset 0 0 30px #00f0ff10;
+}
+h2 {
+    font:
+        800 14px Orbitron,
+        sans-serif;
+    letter-spacing: 0.2em;
+    margin: 0 0 12px;
+    color: var(--cy);
+    text-transform: uppercase;
+}
+.cfg .card:nth-child(2) h2 {
+    color: var(--mg);
+}
+
+/* ---------- Formularelemente ---------- */
+label {
+    display: block;
+    color: var(--mu);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 10px 0 4px;
+}
+select,
+input {
+    width: 100%;
+    background: #05030c;
+    color: var(--tx);
+    border: 1px solid #00f0ff66;
+    border-radius: 3px;
+    padding: 8px 10px;
+    font: inherit;
+}
+select:focus,
+input:focus,
+button:focus-visible {
+    outline: none;
+    border-color: var(--mg);
+    box-shadow: 0 0 10px var(--mg);
+}
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+}
+.mini {
+    background: #05030c;
+    color: var(--cy);
+    border: 1px solid #00f0ff77;
+    border-radius: 3px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+.mini:hover {
+    background: #00f0ff18;
+}
+.mini.bad {
+    color: var(--bad);
+    border-color: #ff4d6d88;
+}
+.mini.on {
+    background: var(--mg);
+    color: #fff;
+    border-color: var(--mg);
+}
+.flags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}
+.flags label,
+.flag1 {
+    margin: 0;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 15px;
+    color: var(--tx);
+}
+button.go {
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px;
+    font:
+        800 15px Orbitron,
+        sans-serif;
+    letter-spacing: 0.2em;
+    color: #fff;
+    background: linear-gradient(90deg, #00b8c8, #d414b0);
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 22px #ff2bd699;
+    text-transform: uppercase;
+}
+button.go:hover {
+    filter: brightness(1.25);
+}
+button.go:disabled {
+    opacity: 0.6;
+}
+button.go.alt {
+    background: linear-gradient(90deg, #d414b0, #00b8c8);
+    margin-top: 10px;
+}
+.cap {
+    height: 8px;
+    background: #05030c;
+    border: 1px solid var(--line);
+    margin-top: 8px;
+}
+.cap i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--cy), var(--mg));
+    box-shadow: 0 0 10px var(--cy);
+}
+
+/* ---------- General (kompakt) ---------- */
+.grow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+}
+.gear {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 12px;
+    cursor: pointer;
+    color: var(--cy);
+    background: #05030c;
+    border: 1px solid #00f0ff88;
+    border-radius: 3px;
+    font: 800 12px Orbitron;
+    letter-spacing: 0.06em;
+}
+.gear:hover {
+    background: linear-gradient(135deg, #00f0ff22, #ff2bd622);
+    box-shadow: 0 0 12px #00f0ff55;
+}
+.gsum {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+.gsum span {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 70px;
+    min-width: 70px;
+    padding: 5px 8px;
+    border: 1px solid var(--line2);
+    background: #05030c;
+    font-size: 11px;
+    color: var(--mu);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.gsum b {
+    font: 800 15px Orbitron;
+    color: var(--cy);
+    letter-spacing: 0;
+    text-transform: none;
+}
+.mgl {
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #00f0ff33;
+    padding: 6px;
+    margin-top: 6px;
+}
+.mgi {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 15px;
+    color: var(--tx);
+    margin: 2px 0;
+}
+.mgi input {
+    width: auto;
+}
