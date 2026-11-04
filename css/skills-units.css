@@ -1,0 +1,228 @@
+/* ---------- Skillbaum (Dialog) ---------- */
+.trh {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    color: var(--mu);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+#tree {
+    display: grid;
+    gap: 6px;
+    margin-top: 8px;
+}
+.trow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+}
+.sk {
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 4px 3px;
+    background: #05030c;
+    color: var(--tx);
+    border: 1px solid #00f0ff44;
+    border-radius: 4px;
+    cursor: pointer;
+    font:
+        600 10px/1.1 Rajdhani,
+        sans-serif;
+    transition:
+        box-shadow 0.15s,
+        border-color 0.15s;
+}
+.sk:hover {
+    border-color: var(--cy);
+    box-shadow: 0 0 10px #00f0ff55;
+}
+.sk .ic {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    color: var(--cy);
+}
+.sk .sic {
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px #0008);
+}
+.sk span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: center;
+    max-height: 22px;
+    min-height: 22px;
+}
+.sk b {
+    font: 700 10px Orbitron;
+    color: var(--mu);
+}
+.sk:not(.on) .sic {
+    filter: grayscale(0.55) brightness(0.8);
+}
+.sk.on {
+    background: linear-gradient(135deg, #00f0ff33, #ff2bd633);
+    border-color: var(--mg);
+    box-shadow: 0 0 10px #ff2bd677;
+}
+.sk.on b {
+    color: var(--tx);
+}
+.sk.max {
+    background: linear-gradient(135deg, #00f0ff, #ff2bd6);
+    color: #05030c;
+    border-color: #fff;
+}
+.sk.max b {
+    color: #05030c;
+}
+
+.srow {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 6px;
+    margin-top: 8px;
+}
+.mini:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ---------- Fähigkeiten & Plan-Zusammenfassung ---------- */
+.traits ul {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 5px;
+}
+.traits li {
+    padding: 6px 9px;
+    border-left: 2px solid var(--mg);
+    background: #ff2bd612;
+    font-size: 14px;
+    color: #d8e8f4;
+}
+.plan {
+    display: grid;
+    gap: 6px;
+    margin: 12px 0;
+}
+.plan div {
+    border: 1px solid var(--line2);
+    background: #05030c;
+    padding: 6px 10px;
+}
+.plan span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mu);
+}
+.plan b {
+    font:
+        600 15px Rajdhani,
+        sans-serif;
+    color: var(--cy);
+}
+.plan b.lossb {
+    color: var(--bad);
+}
+
+/* ---------- Einheiten ---------- */
+.ubar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.utools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+.capnote b {
+    color: var(--cy);
+}
+.capnote em {
+    font-style: normal;
+    color: var(--mg);
+}
+.ulist {
+    display: grid;
+    gap: 5px;
+    margin-top: 10px;
+}
+.urow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 64px 32px 32px 32px;
+    gap: 5px;
+    align-items: center;
+    padding: 2px 0 2px 6px;
+    border-left: 2px solid transparent;
+}
+.urow.lk {
+    border-left-color: var(--bad);
+    background: linear-gradient(90deg, #ff4d6d14, transparent);
+}
+.un {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+.un span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.urow input {
+    padding: 6px 4px;
+    text-align: center;
+    min-width: 0;
+}
+.ub {
+    display: grid;
+    place-items: center;
+    height: 34px;
+    padding: 0;
+    background: #05030c;
+    color: var(--cy);
+    border: 1px solid #00f0ff66;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.ub:hover {
+    background: #00f0ff18;
+}
+.ub.on {
+    background: var(--bad);
+    color: #fff;
+    border-color: var(--bad);
+}
+.ic {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex: none;
+    background: #000a;
+    border-radius: 3px;
+    display: inline-grid;
+    place-items: center;
+    color: var(--cy);
+    font: 800 11px Orbitron;
+}
