@@ -41,7 +41,7 @@ NEONFRONT berechnet per Zufallssimulation (Monte-Carlo), wie sich eine Armee geg
 | :------------------------------: | :-------------------------------------------: |
 | ![Skill-Dialog](docs/skills.png) | ![Karte im Vollbild](docs/map-fullscreen.png) |
 
-> Die Screenshots entstanden ohne die Google-Schriften, daher weichen Überschriften leicht vom Original ab.
+> Die Screenshots entstanden ohne die Schriften Orbitron/Rajdhani, daher weichen Überschriften leicht vom Original ab.
 
 ## Schnellstart
 
@@ -115,8 +115,10 @@ NEONFRONT ist ein inoffizielles Fan-Projekt und steht in keiner Verbindung zu Ci
 
 **Haftungsausschluss:** Für simulierte Kampfergebnisse wird keine Verantwortung übernommen – Nutzung auf eigene Gefahr.
 
+Hosting: IONOS (https://neonfront-kampfsimulator.mschmitz-dev.de), Auftragsverarbeitungsvertrag (AVV/DPA) abgeschlossen, Logfiles werden dort bis zu 8 Wochen gespeichert.
+
 Vor dem Veröffentlichen:
 
-- Impressum und Datenschutzerklärung in `index.html` (Dialog `#legal`): gelbe Platzhalter `[…]` durch echte Angaben ersetzen.
-- Optional die Google Fonts lokal einbinden (Datenschutz).
+- Impressum und Datenschutzerklärung in `index.html` (Dialog `#legal`): Adresse und Kontakt sind eingetragen, bei Änderungen dort anpassen.
+- Schriften lokal: einmal `node scripts/download-fonts.mjs` ausführen, damit der Ordner `fonts/` die vier `.woff2`-Dateien enthält (Orbitron 500/800, Rajdhani 500/600, SIL OFL 1.1). Es gibt keinen Google-Fonts-Abruf mehr.
 - Eine Lizenz für den Code festlegen (noch nicht gewählt).
