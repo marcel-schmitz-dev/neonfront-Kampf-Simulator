@@ -1,0 +1,32 @@
+/* Lokal eingebundene Schriften (kein Google-Fonts-Abruf, keine IP-Übertragung).
+   Die .woff2-Dateien liegen in /fonts – Download: npm-frei per `node scripts/download-fonts.mjs`.
+   Schriften: Orbitron und Rajdhani, Lizenz SIL Open Font License 1.1 (Quelle: Fontsource). */
+
+@font-face {
+    font-family: "Orbitron";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/orbitron-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Orbitron";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("../fonts/orbitron-latin-800-normal.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Rajdhani";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/rajdhani-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Rajdhani";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/rajdhani-latin-600-normal.woff2") format("woff2");
+}

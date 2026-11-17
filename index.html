@@ -16,10 +16,9 @@
             type="image/svg+xml"
             href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='1' stop-color='%23ff2bd6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='12' fill='%2307040f'/%3E%3Cpath d='M32 8l20 7v15c0 13-9 22-20 26C21 52 12 43 12 30V15z' fill='none' stroke='url(%23g)' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M23 41V23l18 18V23' fill='none' stroke='url(%23g)' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
         />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@500;600&display=swap"
-        />
+        <link rel="preload" href="fonts/orbitron-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/rajdhani-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/fonts.css" />
         <link rel="stylesheet" href="css/base.css" />
         <link rel="stylesheet" href="css/components.css" />
         <link rel="stylesheet" href="css/skills-units.css" />
@@ -397,18 +396,19 @@
 
                 <section class="lg" id="lg-imp" hidden>
                     <h4>Impressum / Legal Notice</h4>
-                    <p class="todo"></p>
                     <p>
-                        Angaben gemäß § 5 DDG:<br /><mark>Marcel Schmitz</mark
-                        ><br /><mark></mark><br /><mark></mark>
+                        Angaben gemäß § 5 DDG:<br />Marcel Schmitz<br />Von-Agris-Straße 39<br />41844 Wegberg
                     </p>
-                    <p>Kontakt: <mark>m.schmitz.dev@gmail.com</mark></p>
+                    <p>
+                        Kontakt:
+                        <a href="mailto:kontakt@mschmitz-dev.de">kontakt@mschmitz-dev.de</a>
+                    </p>
                     <p>
                         NEONFRONT ist ein privates, nicht kommerzielles
                         Fan-Projekt ohne Gewinnerzielungsabsicht. Es steht in
-                        keiner Verbindung zu Ubisoft, Blue Byte oder den
-                        Betreibern von Die Siedler Online. Alle Marken, Namen,
-                        Spieldaten und Grafiken gehören den jeweiligen
+                        keiner Verbindung zu Ubisoft, Blue Byte, CipSoft oder
+                        den Betreibern von Die Siedler Online. Alle Marken,
+                        Namen, Spieldaten und Grafiken gehören den jeweiligen
                         Rechteinhabern.
                     </p>
                     <p>
@@ -418,52 +418,76 @@
                     </p>
                     <p>
                         Legal notice: NEONFRONT is a private, non-commercial fan
-                        project and is not affiliated with Ubisoft or Blue Byte.
-                        All trademarks and game assets belong to their
-                        respective owners.
+                        project and is not affiliated with Ubisoft, Blue Byte
+                        or CipSoft. All trademarks and game assets belong to
+                        their respective owners.
                     </p>
                 </section>
 
                 <section class="lg" id="lg-priv" hidden>
                     <h4>Datenschutzerklärung / Privacy Policy</h4>
-                    <p class="todo"></p>
+                    <p>
+                        <b>Verantwortlicher.</b> Marcel Schmitz,
+                        Von-Agris-Straße 39,
+                        41844 Wegberg, E-Mail:
+                        <a href="mailto:kontakt@mschmitz-dev.de">kontakt@mschmitz-dev.de</a>.
+                    </p>
                     <p>
                         <b>Kein Konto, kein Tracking.</b> Der Simulator läuft
                         vollständig in deinem Browser. Es gibt keine Anmeldung,
-                        keine Cookies zu Werbe- oder Analysezwecken und keine
-                        Übertragung deiner Eingaben an einen Server.
+                        keine Cookies, keine Analyse- oder Werbe-Dienste und
+                        keine Übertragung deiner Eingaben an einen Server.
                     </p>
                     <p>
                         <b>Lokale Speicherung.</b> Gespeicherte Generäle,
                         Skillungen und Pflicht-Lager-Markierungen werden im
-                        localStorage deines Browsers abgelegt. Diese Daten
-                        verlassen dein Gerät nicht und können jederzeit über die
-                        Browser-Einstellungen („Websitedaten löschen“) entfernt
-                        werden.
+                        localStorage deines Browsers abgelegt. Das geschieht
+                        ausschließlich, um die von dir genutzten Funktionen
+                        bereitzustellen. Diese Daten verlassen dein Gerät nicht
+                        und können jederzeit über die Browser-Einstellungen
+                        („Websitedaten löschen“) entfernt werden.
                     </p>
                     <p>
-                        <b>Schriftarten.</b> Die Schriften Orbitron und Rajdhani
-                        werden von Google Fonts geladen. Dabei wird deine
-                        IP-Adresse an Google übermittelt.
-                        <span class="todo"></span>
+                        <b>Schriftarten.</b> Die Schriften Orbitron und
+                        Rajdhani sind lokal auf diesem Server eingebunden. Es
+                        wird keine Verbindung zu Google oder anderen
+                        Schriftanbietern aufgebaut, dadurch wird keine
+                        IP-Adresse an Dritte übermittelt.
                     </p>
                     <p>
-                        <b>Hosting.</b> Beim Aufruf der Seite verarbeitet der
-                        Hosting-Anbieter technisch notwendige Server-Logdaten
-                        (z. B. IP-Adresse, Zeitpunkt, abgerufene Datei).
-                        Anbieter: <mark>[Hosting-Anbieter: GitHub Pages]</mark>.
+                        <b>Hosting und Server-Logfiles.</b> Diese Seite wird
+                        bei der IONOS SE, Elgendorfer Str. 57, 56410
+                        Montabaur, gehostet. Beim Aufruf verarbeitet der
+                        Server technisch notwendige Zugriffsdaten (z. B.
+                        IP-Adresse, Datum und Uhrzeit, abgerufene Datei,
+                        übertragene Datenmenge, Browser-Typ). Diese Logfiles
+                        werden bis zu 8 Wochen gespeichert und danach
+                        gelöscht. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f
+                        DSGVO (berechtigtes Interesse am sicheren und
+                        stabilen Betrieb der Seite). Mit IONOS besteht ein
+                        Vertrag zur Auftragsverarbeitung (AVV/DPA) nach
+                        Art. 28 DSGVO. Die Verbindung ist per HTTPS
+                        verschlüsselt.
                     </p>
                     <p>
                         <b>Deine Rechte.</b> Du hast nach der DSGVO Rechte auf
                         Auskunft, Berichtigung, Löschung, Einschränkung der
-                        Verarbeitung und Widerspruch sowie ein Beschwerderecht
-                        bei einer Datenschutz-Aufsichtsbehörde. Kontakt:
-                        <mark>m.schmitz.dev@gmail.com</mark>.
+                        Verarbeitung, Datenübertragbarkeit und Widerspruch.
+                        Wende dich dafür an
+                        <a href="mailto:kontakt@mschmitz-dev.de">kontakt@mschmitz-dev.de</a>.
+                        Außerdem hast du ein Beschwerderecht bei einer
+                        Datenschutz-Aufsichtsbehörde, z. B. der Landesbeauftragten
+                        für Datenschutz und Informationsfreiheit
+                        Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213
+                        Düsseldorf.
                     </p>
                     <p>
-                        Privacy summary: no accounts, no tracking, all data
-                        stays in your browser (localStorage). Fonts are loaded
-                        from Google Fonts.
+                        Privacy summary: no accounts, no cookies, no tracking.
+                        All data stays in your browser (localStorage). Fonts
+                        are hosted locally, so no data is sent to Google. The
+                        host (IONOS SE, with a data processing agreement)
+                        stores server log files for up to 8 weeks. Contact:
+                        kontakt@mschmitz-dev.de.
                     </p>
                 </section>
 
@@ -490,7 +514,7 @@
                     </p>
                     <p>
                         <b>Fan-Projekt.</b> NEONFRONT ist inoffiziell und nicht
-                        mit Ubisoft oder Blue Byte verbunden. „Die Siedler
+                        mit Ubisoft, Blue Byte oder CipSoft verbunden. „Die Siedler
                         Online“ und zugehörige Namen, Daten und Grafiken sind
                         Eigentum der jeweiligen Rechteinhaber.
                     </p>
